@@ -30,7 +30,8 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical"); //Input en el eje Z
         Vector3 direction = new Vector3(horizontalInput, 0, verticalInput); // Getting the position via user input
         Vector3 velocity = direction * _speed; // summarized formula for use below
-        velocity.y -= _gravity;
+        velocity.y -= _gravity; //Apply gravity to the player
+        velocity = transform.transform.TransformDirection(velocity); //This is supposed to make the world direction change to the player direction.
         _controller.Move(Time.deltaTime * velocity);
     }
 }
